@@ -28,5 +28,20 @@ export const config = {
     relativeFrom: '/home/user/config/',
     relativePath: 'Node-Projects',
     relativeTo: '/home/user/js/',
+    resolveElements: [
+        [
+            'html',
+            'index.html'
+        ],
+        [
+            'html',
+            'js',
+            'app.js'
+        ],
+        [
+            '/home/html',
+            'about.html'
+        ]
+    ],
     samplePath: '/Users/Maestro/Node-Projects/YARGS-CLI/yargs-cli/config.mjs'
 };

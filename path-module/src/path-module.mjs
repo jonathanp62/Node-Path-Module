@@ -29,6 +29,7 @@ export class PathModule {
         this.relativeFrom = config.relativeFrom;
         this.relativePath = config.relativePath;
         this.relativeTo = config.relativeTo;
+        this.resolveElements = config.resolveElements;
         this.samplePath = config.samplePath;
     }
 
@@ -59,6 +60,7 @@ export class PathModule {
         this.pathParse();
         this.pathNormalize();
         this.pathRelative();
+        this.pathResolve();
     }
 
     /**
@@ -144,5 +146,21 @@ export class PathModule {
      */
     pathRelative() {
         console.log(`Relative: ${path.relative(this.relativeFrom, this.relativeTo)}`);
+    }
+
+    /**
+     * Use path.resolve()
+     */
+    pathResolve() {
+        // If the first element is not absolute then
+        // the home directory acts as the root.
+
+        this.resolveElements.forEach((array) => {
+            console.log(array);
+
+            array.forEach((element) => {
+                console.log(element);
+            })
+        });
     }
 }
