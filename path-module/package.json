@@ -1,0 +1,15 @@
+{
+  "name": "path-module",
+  "version": "1.0.0",
+  "description": "Work with the path module",
+  "main": "src/index.mjs",
+  "bin": {
+    "run": "./src/index.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/parse-test.mjs"
+  },
+  "author": "Jonathan Parker",
+  "license": "ISC",
+  "type": "module"
+}
