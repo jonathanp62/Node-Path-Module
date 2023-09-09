@@ -12,6 +12,8 @@ import path from 'path';
 
 /**
  * The path module demonstration class.
+ *
+ * See: https://www.javascripttutorial.net/nodejs-tutorial/nodejs-path-module/
  */
 export class PathModule {
     /**
@@ -22,8 +24,11 @@ export class PathModule {
     constructor(config) {
         this.absolutePath = config.absolutePath;
         this.joinElements = config.joinElements;
+        this.normalizePath = config.normalizePath;
         this.pathToFile = config.pathToFile;
+        this.relativeFrom = config.relativeFrom;
         this.relativePath = config.relativePath;
+        this.relativeTo = config.relativeTo;
         this.samplePath = config.samplePath;
     }
 
@@ -51,6 +56,9 @@ export class PathModule {
         this.pathFormat();
         this.pathIsAbsolute();
         this.pathJoin();
+        this.pathParse();
+        this.pathNormalize();
+        this.pathRelative();
     }
 
     /**
@@ -107,5 +115,34 @@ export class PathModule {
         let pathToDir = path.join(...this.joinElements);
 
         console.log(`Joined: ${path.join(pathToDir)}`);
+    }
+
+    /**
+     * Use path.parse()
+     */
+    pathParse() {
+        let pathObject = path.parse(this.samplePath);
+
+        console.log(`Parsed: ${JSON.stringify(pathObject)}`);
+
+        console.log(`Root: ${pathObject.root}`);
+        console.log(`Dir : ${pathObject.dir}`);
+        console.log(`Base: ${pathObject.base}`);
+        console.log(`Ext : ${pathObject.ext}`);
+        console.log(`Name: ${pathObject.name}`);
+    }
+
+    /**
+     * Use path.normalize()
+     */
+    pathNormalize() {
+        console.log(`Normalized: ${path.normalize(this.normalizePath)}`);
+    }
+
+    /**
+     * Use path.relative()
+     */
+    pathRelative() {
+        console.log(`Relative: ${path.relative(this.relativeFrom, this.relativeTo)}`);
     }
 }

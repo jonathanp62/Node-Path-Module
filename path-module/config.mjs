@@ -20,10 +20,13 @@ export const config = {
         'dist',
         'app.js'
     ],
+    normalizePath: 'C:\\\\node.js/module/./js//dist',
     pathToFile: {
         dir: 'public_html/home/js',
         base: 'app.js'
     },
+    relativeFrom: '/home/user/config/',
     relativePath: 'Node-Projects',
+    relativeTo: '/home/user/js/',
     samplePath: '/Users/Maestro/Node-Projects/YARGS-CLI/yargs-cli/config.mjs'
 };
