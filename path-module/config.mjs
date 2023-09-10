@@ -20,7 +20,7 @@ export const config = {
         'dist',
         'app.js'
     ],
-    normalizePath: 'C:\\\\node.js/module/./js//dist',
+    normalizePath: 'C:\\node.js/module/./js//dist',
     pathToFile: {
         dir: 'public_html/home/js',
         base: 'app.js'

@@ -51,24 +51,30 @@ export class PathModule {
             throw new Error(`Path '${this.samplePath}' does not exist`);
         }
 
-        this.pathBaseName();
-        this.pathDirName();
-        this.pathExtName();
-        this.pathFormat();
-        this.pathIsAbsolute();
-        this.pathJoin();
-        this.pathParse();
-        this.pathNormalize();
-        this.pathRelative();
-        this.pathResolve();
+        let methods = [
+            this.pathBaseName,
+            this.pathDirName,
+            this.pathExtName,
+            this.pathFormat,
+            this.pathIsAbsolute,
+            this.pathJoin,
+            this.pathParse,
+            this.pathNormalize,
+            this.pathRelative,
+            this.pathResolve
+        ]
+
+        methods.forEach(method => method(this));
     }
 
     /**
      * Use path.basename()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathBaseName() {
-        let baseNameWithExt = path.basename(this.samplePath);
-        let baseNameWithoutExt = path.basename(this.samplePath, '.mjs');
+    pathBaseName(pathModule) {
+        let baseNameWithExt = path.basename(pathModule.samplePath);
+        let baseNameWithoutExt = path.basename(pathModule.samplePath, '.mjs');
 
         console.log(`Base name w/ ext   : ${baseNameWithExt}`);
         console.log(`Base name w/out ext: ${baseNameWithoutExt}`);
@@ -76,54 +82,66 @@ export class PathModule {
 
     /**
      * Use path.dirname()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathDirName() {
-        console.log(`Dir name: ${path.dirname(this.samplePath)}`);
+    pathDirName(pathModule) {
+        console.log(`Dir name: ${path.dirname(pathModule.samplePath)}`);
     }
 
     /**
      * Use path.extname()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathExtName() {
-        console.log(`Ext name: ${path.extname(this.samplePath)}`);
+    pathExtName(pathModule) {
+        console.log(`Ext name: ${path.extname(pathModule.samplePath)}`);
     }
 
     /**
      * Use path.format()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathFormat() {
-        console.log(`Formatted: ${path.format(this.pathToFile)}`);
+    pathFormat(pathModule) {
+        console.log(`Formatted: ${path.format(pathModule.pathToFile)}`);
     }
 
     /**
      * Use path.isAbsolute()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathIsAbsolute() {
-        if (path.isAbsolute(this.absolutePath)) {
-            console.log(`Path ${this.absolutePath} is absolute`);
+    pathIsAbsolute(pathModule) {
+        if (path.isAbsolute(pathModule.absolutePath)) {
+            console.log(`Path ${pathModule.absolutePath} is absolute`);
         }
 
-        if (!path.isAbsolute(this.relativePath)) {
-            console.log(`Path ${this.relativePath} is not absolute`);
+        if (!path.isAbsolute(pathModule.relativePath)) {
+            console.log(`Path ${pathModule.relativePath} is not absolute`);
         }
     }
 
     /**
      * Use path.join()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathJoin() {
+    pathJoin(pathModule) {
         // The ... destructures the array of strings into string arguments
 
-        let pathToDir = path.join(...this.joinElements);
+        let pathToDir = path.join(...pathModule.joinElements);
 
         console.log(`Joined: ${path.join(pathToDir)}`);
     }
 
     /**
      * Use path.parse()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathParse() {
-        let pathObject = path.parse(this.samplePath);
+    pathParse(pathModule) {
+        let pathObject = path.parse(pathModule.samplePath);
 
         console.log(`Parsed: ${JSON.stringify(pathObject)}`);
 
@@ -136,31 +154,39 @@ export class PathModule {
 
     /**
      * Use path.normalize()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathNormalize() {
-        console.log(`Normalized: ${path.normalize(this.normalizePath)}`);
+    pathNormalize(pathModule) {
+        console.log(`Normalized: ${path.normalize(pathModule.normalizePath)}`);
     }
 
     /**
      * Use path.relative()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathRelative() {
-        console.log(`Relative: ${path.relative(this.relativeFrom, this.relativeTo)}`);
+    pathRelative(pathModule) {
+        console.log(`Relative: ${path.relative(pathModule.relativeFrom, pathModule.relativeTo)}`);
     }
 
     /**
      * Use path.resolve()
+     *
+     * @param   {PathModule}    pathModule
      */
-    pathResolve() {
+    pathResolve(pathModule) {
         // If the first element is not absolute then
         // the home directory acts as the root.
 
-        this.resolveElements.forEach((array) => {
-            console.log(array);
-
+        pathModule.resolveElements.forEach((array) => {
             array.forEach((element) => {
-                console.log(element);
-            })
+                console.log(`Element: ${element}`);
+            });
+
+            // The ... destructures the array of strings into string arguments
+
+            console.log(`Resolved: ${path.resolve(...array)}`);
         });
     }
 }
