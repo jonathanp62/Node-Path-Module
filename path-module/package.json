@@ -2,6 +2,15 @@
   "name": "path-module",
   "version": "1.0.0",
   "description": "Work with the path module",
+  "keywords": [
+    "node",
+    "learning",
+    "path",
+    "application"
+  ],
+  "repository": {
+    "type": "git"
+  },
   "main": "src/index.mjs",
   "bin": {
     "run": "./src/index.mjs"
